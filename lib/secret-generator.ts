@@ -1,12 +1,12 @@
 // Character sets for secret generation
 export const charSets = {
-  uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-  lowercase: 'abcdefghijklmnopqrstuvwxyz',
-  numbers: '0123456789',
-  symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?',
+  uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  lowercase: "abcdefghijklmnopqrstuvwxyz",
+  numbers: "0123456789",
+  symbols: "!@#$%^&*()_+-=[]{}|;:,.<>?",
 };
 
-export type SecretFormat = 'base64' | 'hex' | 'uuid';
+export type SecretFormat = "base64" | "hex" | "uuid";
 
 interface GenerateSecretOptions {
   length: number;
@@ -24,28 +24,40 @@ const getRandomBytes = (length: number): Uint8Array => {
 };
 
 // Format secret based on selected format
-export const formatSecret = (bytes: Uint8Array, format: SecretFormat): string => {
+export const formatSecret = (
+  bytes: Uint8Array,
+  format: SecretFormat
+): string => {
   switch (format) {
-    case 'base64':
-      return btoa(String.fromCharCode(...bytes))
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=+$/, '');
-    case 'hex':
+    case "base64": {
+      // Convert Uint8Array to string safely
+      const binaryString = Array.from(bytes)
+        .map(byte => String.fromCharCode(byte))
+        .join("");
+      return btoa(binaryString)
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=+$/, "");
+    }
+    case "hex":
       return Array.from(bytes)
-        .map((b) => b.toString(16).padStart(2, '0'))
-        .join('');
-    case 'uuid': {
+        .map(b => b.toString(16).padStart(2, "0"))
+        .join("");
+    case "uuid": {
       // UUID v4 format with some random bytes
       const hex = Array.from(bytes.slice(0, 16))
-        .map((b) => b.toString(16).padStart(2, '0'))
-        .join('');
+        .map(b => b.toString(16).padStart(2, "0"))
+        .join("");
       return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-4${hex.slice(13, 16)}-${
-        '89ab'[bytes[16] % 4]
+        "89ab"[bytes[16] % 4]
       }${hex.slice(17, 20)}-${hex.slice(20, 32)}`;
     }
     default:
-      return btoa(String.fromCharCode(...bytes));
+      return btoa(
+        Array.from(bytes)
+          .map(byte => String.fromCharCode(byte))
+          .join("")
+      );
   }
 };
 
@@ -59,7 +71,7 @@ export const generateSecret = ({
   format,
 }: GenerateSecretOptions): string => {
   // For specific formats, generate appropriate random data
-  if (format === 'base64' || format === 'hex' || format === 'uuid') {
+  if (format === "base64" || format === "hex" || format === "uuid") {
     // For these formats, we generate random bytes and format them
     const byteLength = Math.ceil(length * 0.75); // Approximate bytes needed for desired length
     const bytes = getRandomBytes(byteLength);
@@ -67,7 +79,7 @@ export const generateSecret = ({
   }
 
   // For custom character set generation
-  let charset = '';
+  let charset = "";
   if (includeUppercase) charset += charSets.uppercase;
   if (includeLowercase) charset += charSets.lowercase;
   if (includeNumbers) charset += charSets.numbers;
@@ -79,7 +91,7 @@ export const generateSecret = ({
   }
 
   const randomValues = getRandomBytes(length);
-  let result = '';
+  let result = "";
 
   for (let i = 0; i < length; i++) {
     result += charset[randomValues[i] % charset.length];
