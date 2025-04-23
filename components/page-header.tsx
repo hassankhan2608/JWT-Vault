@@ -1,20 +1,25 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Key, Github } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { motion } from "framer-motion";
+import { Key, Github } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function PageHeader() {
   return (
-    <motion.header 
+    <motion.header
       className="border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="container max-w-5xl mx-auto py-4 px-4 sm:px-6 flex justify-between items-center">
-        <motion.div 
+        <motion.div
           className="flex items-center gap-2"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -27,7 +32,9 @@ export function PageHeader() {
             </div>
           </div>
           <div>
-            <h1 className="text-lg font-bold tracking-tight font-space-grotesk">JWT Vault</h1>
+            <h1 className="text-lg font-bold tracking-tight font-space-grotesk">
+              JWT Vault
+            </h1>
             <p className="text-xs text-muted-foreground">
               Professional JWT Secret Generator
             </p>
@@ -49,7 +56,7 @@ export function PageHeader() {
                   asChild
                 >
                   <a
-                    href="https://github.com/stackblitz/jwt-vault"
+                    href="https://github.com/hassankhan2608/JWT-Vault"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2"
