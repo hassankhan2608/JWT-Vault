@@ -30,12 +30,12 @@ export default function Home() {
       <BackgroundElement className="top-[-20%] left-[-10%]" />
       <BackgroundElement className="bottom-[-20%] right-[-10%]" />
       <BackgroundElement className="top-[40%] right-[-20%]" />
-      
+
       <PageHeader />
-      
+
       <main className="flex-1 py-6 px-4 relative">
         <div className="max-w-5xl mx-auto">
-          <motion.div 
+          <motion.div
             className="space-y-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -51,15 +51,15 @@ export default function Home() {
                   Secure JWT Secret Generator
                 </h1>
                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto mt-4">
-                  Generate cryptographically secure JWT secrets 
+                  Generate cryptographically secure JWT secrets
                   with a modern, user-friendly interface
                 </p>
               </motion.div>
             </div>
-            
+
             <SecretGeneratorForm />
-            
-            <motion.div 
+
+            <motion.div
               className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -73,13 +73,13 @@ export default function Home() {
                   </CardHeader>
                   <CardContent>
                     <CardDescription>
-                      All secret generation happens entirely in your browser. 
+                      All secret generation happens entirely in your browser.
                       No server-side requests, no tracking, no data storage.
                     </CardDescription>
                   </CardContent>
                 </Card>
               </motion.div>
-              
+
               <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
                 <Card className="border-2">
                   <CardHeader className="pb-2">
@@ -94,7 +94,7 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </motion.div>
-              
+
               <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
                 <Card className="border-2">
                   <CardHeader className="pb-2">
@@ -110,8 +110,8 @@ export default function Home() {
                 </Card>
               </motion.div>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="text-center text-sm text-muted-foreground py-6 border-t mt-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
