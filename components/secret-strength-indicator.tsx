@@ -70,7 +70,7 @@ export function SecretStrengthIndicator({
           style={
             {
               "--progress-foreground": `hsl(var(--${getStrengthColor(
-                strength
+                strength,
               )}))`,
             } as React.CSSProperties
           }
@@ -85,8 +85,8 @@ export function SecretStrengthIndicator({
         {length < 16
           ? "Consider using a longer secret for better security"
           : length >= 32
-          ? "Great length for a secure JWT secret"
-          : "Good length, but longer is better for production use"}
+            ? "Great length for a secure JWT secret"
+            : "Good length, but longer is better for production use"}
       </motion.p>
     </motion.div>
   );

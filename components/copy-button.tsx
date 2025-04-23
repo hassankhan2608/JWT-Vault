@@ -1,18 +1,27 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Check, Copy } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { useToast } from '@/hooks/use-toast';
+import { useState } from "react";
+import { Check, Copy } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { useToast } from "@/hooks/use-toast";
 
 interface CopyButtonProps {
   value: string;
-  variant?: 'default' | 'secondary' | 'outline' | 'ghost';
-  size?: 'default' | 'sm' | 'lg' | 'icon';
+  variant?: "default" | "secondary" | "outline" | "ghost";
+  size?: "default" | "sm" | "lg" | "icon";
 }
 
-export function CopyButton({ value, variant = 'outline', size = 'sm' }: CopyButtonProps) {
+export function CopyButton({
+  value,
+  variant = "outline",
+  size = "sm",
+}: CopyButtonProps) {
   const [hasCopied, setHasCopied] = useState(false);
   const { toast } = useToast();
 
@@ -21,8 +30,8 @@ export function CopyButton({ value, variant = 'outline', size = 'sm' }: CopyButt
       await navigator.clipboard.writeText(value);
       setHasCopied(true);
       toast({
-        title: 'Copied!',
-        description: 'The secret has been copied to your clipboard.',
+        title: "Copied!",
+        description: "The secret has been copied to your clipboard.",
       });
 
       setTimeout(() => {
@@ -30,9 +39,9 @@ export function CopyButton({ value, variant = 'outline', size = 'sm' }: CopyButt
       }, 2000);
     } catch (error) {
       toast({
-        title: 'Failed to copy',
-        description: 'Please try again or copy manually.',
-        variant: 'destructive',
+        title: "Failed to copy",
+        description: "Please try again or copy manually.",
+        variant: "destructive",
       });
     }
   };
@@ -56,7 +65,7 @@ export function CopyButton({ value, variant = 'outline', size = 'sm' }: CopyButt
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>{hasCopied ? 'Copied!' : 'Copy to clipboard'}</p>
+          <p>{hasCopied ? "Copied!" : "Copy to clipboard"}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

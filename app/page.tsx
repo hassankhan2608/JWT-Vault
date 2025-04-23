@@ -1,11 +1,17 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { PageHeader } from '@/components/page-header';
-import { SecretGeneratorForm } from '@/components/secret-generator-form';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Toaster } from '@/components/ui/toaster';
-import { Github, Lock, ShieldCheck, Key, Shield } from 'lucide-react';
+import { motion } from "framer-motion";
+import { PageHeader } from "@/components/page-header";
+import { SecretGeneratorForm } from "@/components/secret-generator-form";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Toaster } from "@/components/ui/toaster";
+import { Github, Lock, ShieldCheck } from "lucide-react";
 
 const BackgroundElement = ({ className }: { className: string }) => (
   <motion.div
@@ -51,8 +57,8 @@ export default function Home() {
                   Secure JWT Secret Generator
                 </h1>
                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto mt-4">
-                  Generate cryptographically secure JWT secrets
-                  with a modern, user-friendly interface
+                  Generate cryptographically secure JWT secrets with a modern,
+                  user-friendly interface
                 </p>
               </motion.div>
             </div>
@@ -65,7 +71,10 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
                 <Card className="border-2">
                   <CardHeader className="pb-2">
                     <Lock className="h-10 w-10 text-primary mb-2" />
@@ -73,14 +82,17 @@ export default function Home() {
                   </CardHeader>
                   <CardContent>
                     <CardDescription>
-                      All secret generation happens entirely in your browser.
-                      No server-side requests, no tracking, no data storage.
+                      All secret generation happens entirely in your browser. No
+                      server-side requests, no tracking, no data storage.
                     </CardDescription>
                   </CardContent>
                 </Card>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
                 <Card className="border-2">
                   <CardHeader className="pb-2">
                     <ShieldCheck className="h-10 w-10 text-primary mb-2" />
@@ -95,7 +107,10 @@ export default function Home() {
                 </Card>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
                 <Card className="border-2">
                   <CardHeader className="pb-2">
                     <Github className="h-10 w-10 text-primary mb-2" />
@@ -118,10 +133,12 @@ export default function Home() {
               transition={{ delay: 0.4 }}
             >
               <p>
-                Built with security and privacy in mind. No secrets are sent over the network.
+                Built with security and privacy in mind. No secrets are sent
+                over the network.
               </p>
               <p className="mt-1">
-                Need inspiration? The best JWT secrets are random, unique, and at least 32 characters long.
+                Need inspiration? The best JWT secrets are random, unique, and
+                at least 32 characters long.
               </p>
             </motion.div>
           </motion.div>

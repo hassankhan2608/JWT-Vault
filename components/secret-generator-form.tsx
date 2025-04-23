@@ -1,18 +1,35 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Slider } from '@/components/ui/slider';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Wand2, Lock, Unlock } from 'lucide-react';
-import { SecretStrengthIndicator } from '@/components/secret-strength-indicator';
-import { calculateStrength, generateSecret, SecretFormat } from '@/lib/secret-generator';
-import { GeneratedSecret } from '@/components/generated-secret';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Badge } from '@/components/ui/badge';
+import { useState } from "react";
+import { Slider } from "@/components/ui/slider";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Wand2, Lock, Unlock } from "lucide-react";
+import { SecretStrengthIndicator } from "@/components/secret-strength-indicator";
+import {
+  calculateStrength,
+  generateSecret,
+  SecretFormat,
+} from "@/lib/secret-generator";
+import { GeneratedSecret } from "@/components/generated-secret";
+import { motion, AnimatePresence } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
 
 const presetLengths = [32, 64, 128, 256, 512];
 
@@ -22,23 +39,23 @@ export function SecretGeneratorForm() {
   const [includeLowercase, setIncludeLowercase] = useState(true);
   const [includeNumbers, setIncludeNumbers] = useState(true);
   const [includeSymbols, setIncludeSymbols] = useState(true);
-  const [format, setFormat] = useState<SecretFormat>('base64');
-  const [generatedSecret, setGeneratedSecret] = useState<string>('');
+  const [format, setFormat] = useState<SecretFormat>("base64");
+  const [generatedSecret, setGeneratedSecret] = useState<string>("");
   const [isGenerating, setIsGenerating] = useState(false);
-  
+
   const strength = calculateStrength(
     secretLength,
     includeUppercase,
     includeLowercase,
     includeNumbers,
-    includeSymbols
+    includeSymbols,
   );
 
   const handleGenerateSecret = async () => {
     setIsGenerating(true);
     // Add a small delay to show the animation
-    await new Promise(resolve => setTimeout(resolve, 600));
-    
+    await new Promise((resolve) => setTimeout(resolve, 600));
+
     const secret = generateSecret({
       length: secretLength,
       includeUppercase,
@@ -47,7 +64,7 @@ export function SecretGeneratorForm() {
       includeSymbols,
       format,
     });
-    
+
     setGeneratedSecret(secret);
     setIsGenerating(false);
   };
@@ -63,9 +80,17 @@ export function SecretGeneratorForm() {
           <CardTitle className="text-xl flex items-center gap-2">
             <motion.div
               animate={{ rotate: isGenerating ? 360 : 0 }}
-              transition={{ duration: 1, repeat: isGenerating ? Infinity : 0, ease: "linear" }}
+              transition={{
+                duration: 1,
+                repeat: isGenerating ? Infinity : 0,
+                ease: "linear",
+              }}
             >
-              {isGenerating ? <Lock className="h-5 w-5" /> : <Unlock className="h-5 w-5" />}
+              {isGenerating ? (
+                <Lock className="h-5 w-5" />
+              ) : (
+                <Unlock className="h-5 w-5" />
+              )}
             </motion.div>
             Secret Generator Settings
           </CardTitle>
@@ -78,14 +103,14 @@ export function SecretGeneratorForm() {
             <div className="flex justify-between items-center">
               <Label htmlFor="length">Secret Length: {secretLength}</Label>
               <span className="text-sm text-muted-foreground">
-                {secretLength < 16 
-                  ? "Not recommended" 
-                  : secretLength < 32 
-                    ? "Good" 
+                {secretLength < 16
+                  ? "Not recommended"
+                  : secretLength < 32
+                    ? "Good"
                     : "Excellent"}
               </span>
             </div>
-            
+
             <div className="flex flex-wrap gap-2 mb-4">
               {presetLengths.map((length) => (
                 <Badge
@@ -98,7 +123,7 @@ export function SecretGeneratorForm() {
                 </Badge>
               ))}
             </div>
-            
+
             <Slider
               id="length"
               min={8}
@@ -110,7 +135,7 @@ export function SecretGeneratorForm() {
             />
           </div>
 
-          <motion.div 
+          <motion.div
             className="space-y-4"
             initial={false}
             animate={{ opacity: 1, y: 0 }}
@@ -118,7 +143,7 @@ export function SecretGeneratorForm() {
           >
             <Label>Character Sets</Label>
             <div className="grid grid-cols-2 gap-4">
-              <motion.div 
+              <motion.div
                 className="flex items-center justify-between space-x-2"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -132,7 +157,7 @@ export function SecretGeneratorForm() {
                   onCheckedChange={setIncludeUppercase}
                 />
               </motion.div>
-              <motion.div 
+              <motion.div
                 className="flex items-center justify-between space-x-2"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -146,7 +171,7 @@ export function SecretGeneratorForm() {
                   onCheckedChange={setIncludeLowercase}
                 />
               </motion.div>
-              <motion.div 
+              <motion.div
                 className="flex items-center justify-between space-x-2"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -160,7 +185,7 @@ export function SecretGeneratorForm() {
                   onCheckedChange={setIncludeNumbers}
                 />
               </motion.div>
-              <motion.div 
+              <motion.div
                 className="flex items-center justify-between space-x-2"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -193,41 +218,45 @@ export function SecretGeneratorForm() {
               </SelectContent>
             </Select>
             <p className="text-xs text-muted-foreground mt-1">
-              {format === 'base64' 
-                ? "URL-safe Base64 encoding, commonly used for JWT secrets" 
-                : format === 'hex'
-                ? "Hexadecimal format, each byte represented as two characters (0-9, a-f)"
-                : "UUID v4 format, standardized identifier format"}
+              {format === "base64"
+                ? "URL-safe Base64 encoding, commonly used for JWT secrets"
+                : format === "hex"
+                  ? "Hexadecimal format, each byte represented as two characters (0-9, a-f)"
+                  : "UUID v4 format, standardized identifier format"}
             </p>
           </div>
 
           <SecretStrengthIndicator strength={strength} length={secretLength} />
         </CardContent>
         <CardFooter>
-          <Button 
-            onClick={handleGenerateSecret} 
+          <Button
+            onClick={handleGenerateSecret}
             className="w-full gap-2 transition-all"
             size="lg"
             disabled={isGenerating}
           >
             <motion.div
               animate={{ rotate: isGenerating ? 360 : 0 }}
-              transition={{ duration: 1, repeat: isGenerating ? Infinity : 0, ease: "linear" }}
+              transition={{
+                duration: 1,
+                repeat: isGenerating ? Infinity : 0,
+                ease: "linear",
+              }}
             >
               <Wand2 className="h-4 w-4" />
             </motion.div>
-            {isGenerating ? 'Generating...' : 'Generate Secret'}
+            {isGenerating ? "Generating..." : "Generate Secret"}
           </Button>
         </CardFooter>
       </Card>
 
       <AnimatePresence mode="wait">
         {generatedSecret && (
-          <GeneratedSecret 
-            key={generatedSecret} 
-            secret={generatedSecret} 
-            format={format} 
-            strength={strength} 
+          <GeneratedSecret
+            key={generatedSecret}
+            secret={generatedSecret}
+            format={format}
+            strength={strength}
           />
         )}
       </AnimatePresence>

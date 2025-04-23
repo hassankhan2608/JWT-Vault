@@ -13,6 +13,7 @@ A professional-grade JWT secret generator built with security and privacy at its
 ## ✨ Features
 
 ### 🔒 Security First
+
 - **100% Client-Side Processing**
   - All computation happens in your browser
   - No server requests
@@ -20,11 +21,13 @@ A professional-grade JWT secret generator built with security and privacy at its
   - Complete privacy
 
 ### 🛡️ Cryptographic Security
+
 - Leverages Web Crypto API
 - True random number generation
 - Industry-standard algorithms
 
 ### 🎨 Modern & Intuitive
+
 - Real-time strength analysis
 - Visual entropy feedback
 - Customizable generation options
@@ -33,11 +36,13 @@ A professional-grade JWT secret generator built with security and privacy at its
 ## 🚀 Secret Generation Options
 
 ### Formats
+
 - 📝 Base64 (URL Safe)
 - 🔢 Hexadecimal
 - 🆔 UUID v4
 
 ### Customization
+
 - 📏 Adjustable length (8-512 characters)
 - 🔤 Character set selection
 - 💪 Strength indicators
@@ -46,6 +51,7 @@ A professional-grade JWT secret generator built with security and privacy at its
 ## 🛠️ Technical Stack
 
 ### Core Technologies
+
 - ⚛️ Next.js 13 (App Router)
 - 🎨 Tailwind CSS
 - 🧩 shadcn/ui
@@ -53,6 +59,7 @@ A professional-grade JWT secret generator built with security and privacy at its
 - 📦 TypeScript
 
 ### UI Components
+
 - 🎭 Dark mode by default
 - 🖌️ Custom animations
 - 📱 Responsive design
@@ -77,19 +84,23 @@ npm start
 ## 🔐 Best Practices for JWT Secrets
 
 1. **Length Matters**
+
    - Minimum 32 characters
    - More length = more security
 
 2. **Uniqueness is Key**
+
    - Generate new secrets per project
    - Never reuse across environments
 
 3. **Randomness Rules**
+
    - Avoid patterns
    - Skip meaningful words
    - Trust the generator
 
 4. **Secure Storage**
+
    - Use environment variables
    - Never commit secrets
    - Implement secret management

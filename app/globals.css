@@ -38,7 +38,9 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 }
 
@@ -48,14 +50,16 @@
 
 @keyframes glow {
   from {
-    box-shadow: 0 0 10px theme('colors.primary.DEFAULT'),
-                0 0 20px theme('colors.primary.DEFAULT'),
-                0 0 30px theme('colors.primary.DEFAULT');
+    box-shadow:
+      0 0 10px theme("colors.primary.DEFAULT"),
+      0 0 20px theme("colors.primary.DEFAULT"),
+      0 0 30px theme("colors.primary.DEFAULT");
   }
   to {
-    box-shadow: 0 0 20px theme('colors.primary.DEFAULT'),
-                0 0 30px theme('colors.primary.DEFAULT'),
-                0 0 40px theme('colors.primary.DEFAULT');
+    box-shadow:
+      0 0 20px theme("colors.primary.DEFAULT"),
+      0 0 30px theme("colors.primary.DEFAULT"),
+      0 0 40px theme("colors.primary.DEFAULT");
   }
 }
 

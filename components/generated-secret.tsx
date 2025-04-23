@@ -1,14 +1,26 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Eye, EyeOff, Shield, ShieldAlert, RefreshCw } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { CopyButton } from '@/components/copy-button';
-import { SecretFormat } from '@/lib/secret-generator';
-import { Badge } from '@/components/ui/badge';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Eye, EyeOff, Shield, ShieldAlert, RefreshCw } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { CopyButton } from "@/components/copy-button";
+import { SecretFormat } from "@/lib/secret-generator";
+import { Badge } from "@/components/ui/badge";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface GeneratedSecretProps {
   secret: string;
@@ -16,30 +28,36 @@ interface GeneratedSecretProps {
   strength: number;
 }
 
-export function GeneratedSecret({ secret, format, strength }: GeneratedSecretProps) {
+export function GeneratedSecret({
+  secret,
+  format,
+  strength,
+}: GeneratedSecretProps) {
   const [visible, setVisible] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
 
-  const formatLabel = 
-    format === 'base64' ? 'Base64 (URL Safe)' :
-    format === 'hex' ? 'Hexadecimal' : 
-    'UUID v4';
+  const formatLabel =
+    format === "base64"
+      ? "Base64 (URL Safe)"
+      : format === "hex"
+        ? "Hexadecimal"
+        : "UUID v4";
 
   // Mask the secret with asterisks
-  const maskedSecret = secret.replace(/./g, '•');
+  const maskedSecret = secret.replace(/./g, "•");
 
   // Format the secret for better readability
   const formatDisplaySecret = (rawSecret: string): string => {
-    if (format === 'uuid') return rawSecret; // UUID is already formatted
-    
+    if (format === "uuid") return rawSecret; // UUID is already formatted
+
     // For other formats, add spaces every 4 chars for readability
-    return rawSecret.match(/.{1,4}/g)?.join(' ') || rawSecret;
+    return rawSecret.match(/.{1,4}/g)?.join(" ") || rawSecret;
   };
 
   const getStrengthColor = (): string => {
-    if (strength < 40) return 'bg-destructive';
-    if (strength < 60) return 'bg-yellow-500';
-    return 'bg-green-500';
+    if (strength < 40) return "bg-destructive";
+    if (strength < 60) return "bg-yellow-500";
+    return "bg-green-500";
   };
 
   const toggleVisibility = () => {
@@ -61,7 +79,7 @@ export function GeneratedSecret({ secret, format, strength }: GeneratedSecretPro
       <Card className="border-2 overflow-hidden">
         <CardHeader className="pb-3">
           <div className="flex justify-between items-center">
-            <motion.div 
+            <motion.div
               className="flex items-center gap-2"
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -75,9 +93,9 @@ export function GeneratedSecret({ secret, format, strength }: GeneratedSecretPro
           </div>
           <CardDescription className="flex items-center gap-1.5">
             <motion.div
-              animate={{ 
+              animate={{
                 rotate: strength >= 60 ? [0, 360] : [0, 45, -45, 0],
-                scale: [1, 1.1, 1]
+                scale: [1, 1.1, 1],
               }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
@@ -88,14 +106,14 @@ export function GeneratedSecret({ secret, format, strength }: GeneratedSecretPro
               )}
             </motion.div>
             {strength >= 80
-              ? 'Very strong secret, suitable for production use'
+              ? "Very strong secret, suitable for production use"
               : strength >= 60
-              ? 'Strong secret, good for most applications'
-              : 'Consider increasing length or complexity for better security'}
+                ? "Strong secret, good for most applications"
+                : "Consider increasing length or complexity for better security"}
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <motion.div 
+          <motion.div
             className="relative"
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -108,7 +126,9 @@ export function GeneratedSecret({ secret, format, strength }: GeneratedSecretPro
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}
               >
-                {visible ? formatDisplaySecret(secret) : formatDisplaySecret(maskedSecret)}
+                {visible
+                  ? formatDisplaySecret(secret)
+                  : formatDisplaySecret(maskedSecret)}
               </motion.span>
             </div>
             <div className="absolute top-2 right-2 flex space-x-2">
@@ -134,7 +154,7 @@ export function GeneratedSecret({ secret, format, strength }: GeneratedSecretPro
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>{visible ? 'Hide secret' : 'Show secret'}</p>
+                    <p>{visible ? "Hide secret" : "Show secret"}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -150,14 +170,18 @@ export function GeneratedSecret({ secret, format, strength }: GeneratedSecretPro
           >
             Length: {secret.length} characters
           </motion.div>
-          <motion.div 
+          <motion.div
             className="flex items-center gap-1.5"
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
           >
             <div className={`h-2 w-2 rounded-full ${getStrengthColor()}`} />
-            {strength >= 80 ? 'Very Strong' : strength >= 60 ? 'Strong' : 'Moderate'}
+            {strength >= 80
+              ? "Very Strong"
+              : strength >= 60
+                ? "Strong"
+                : "Moderate"}
           </motion.div>
         </CardFooter>
       </Card>

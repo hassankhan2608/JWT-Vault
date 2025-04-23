@@ -26,13 +26,13 @@ const getRandomBytes = (length: number): Uint8Array => {
 // Format secret based on selected format
 export const formatSecret = (
   bytes: Uint8Array,
-  format: SecretFormat
+  format: SecretFormat,
 ): string => {
   switch (format) {
     case "base64": {
       // Convert Uint8Array to string safely
       const binaryString = Array.from(bytes)
-        .map(byte => String.fromCharCode(byte))
+        .map((byte) => String.fromCharCode(byte))
         .join("");
       return btoa(binaryString)
         .replace(/\+/g, "-")
@@ -41,12 +41,12 @@ export const formatSecret = (
     }
     case "hex":
       return Array.from(bytes)
-        .map(b => b.toString(16).padStart(2, "0"))
+        .map((b) => b.toString(16).padStart(2, "0"))
         .join("");
     case "uuid": {
       // UUID v4 format with some random bytes
       const hex = Array.from(bytes.slice(0, 16))
-        .map(b => b.toString(16).padStart(2, "0"))
+        .map((b) => b.toString(16).padStart(2, "0"))
         .join("");
       return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-4${hex.slice(13, 16)}-${
         "89ab"[bytes[16] % 4]
@@ -55,8 +55,8 @@ export const formatSecret = (
     default:
       return btoa(
         Array.from(bytes)
-          .map(byte => String.fromCharCode(byte))
-          .join("")
+          .map((byte) => String.fromCharCode(byte))
+          .join(""),
       );
   }
 };
@@ -106,7 +106,7 @@ export const calculateStrength = (
   includeUppercase: boolean,
   includeLowercase: boolean,
   includeNumbers: boolean,
-  includeSymbols: boolean
+  includeSymbols: boolean,
 ): number => {
   // Calculate character set size
   let charSetSize = 0;

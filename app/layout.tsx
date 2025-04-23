@@ -1,44 +1,54 @@
-import './globals.css';
-import '@fontsource/inter/300.css';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/inter/700.css';
-import type { Metadata } from 'next';
+import "./globals.css";
+import "@fontsource/inter/300.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'JWT Vault | Professional JWT Secret Generator',
-  description: 'Generate cryptographically secure JWT secrets with our modern, privacy-focused tool. Built with security in mind, featuring client-side processing and zero data storage.',
-  keywords: ['JWT', 'security', 'generator', 'cryptography', 'web security', 'authentication'],
-  authors: [{ name: 'StackBlitz' }],
+  title: "JWT Vault | Professional JWT Secret Generator",
+  description:
+    "Generate cryptographically secure JWT secrets with our modern, privacy-focused tool. Built with security in mind, featuring client-side processing and zero data storage.",
+  keywords: [
+    "JWT",
+    "security",
+    "generator",
+    "cryptography",
+    "web security",
+    "authentication",
+  ],
+  authors: [{ name: "Hassan Khan" }],
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://jwt-vault.stackblitz.com',
-    title: 'JWT Vault | Professional JWT Secret Generator',
-    description: 'Generate cryptographically secure JWT secrets with our modern, privacy-focused tool',
-    siteName: 'JWT Vault',
+    type: "website",
+    locale: "en_US",
+    url: "https://jwt-vault.vercel.com",
+    title: "JWT Vault | Professional JWT Secret Generator",
+    description:
+      "Generate cryptographically secure JWT secrets with our modern, privacy-focused tool",
+    siteName: "JWT Vault",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'JWT Vault | Professional JWT Secret Generator',
-    description: 'Generate cryptographically secure JWT secrets with our modern, privacy-focused tool',
+    card: "summary_large_image",
+    title: "JWT Vault | Professional JWT Secret Generator",
+    description:
+      "Generate cryptographically secure JWT secrets with our modern, privacy-focused tool",
   },
   icons: {
     icon: [
       {
-        url: '/favicon.ico',
-        sizes: '32x32',
+        url: "/favicon.ico",
+        sizes: "32x32",
       },
       {
-        url: '/icon.png',
-        sizes: '192x192',
+        url: "/icon.png",
+        sizes: "192x192",
       },
     ],
-    apple: '/apple-icon.png',
+    apple: "/apple-icon.png",
   },
-  manifest: '/manifest.json',
-  themeColor: '#020817',
+  manifest: "/manifest.json",
+  themeColor: "#020817",
 };
 
 export default function RootLayout({
