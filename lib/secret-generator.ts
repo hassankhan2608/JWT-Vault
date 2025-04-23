@@ -1,5 +1,5 @@
 // Character sets for secret generation
-export const charSets = {
+const charSets = {
   uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   lowercase: "abcdefghijklmnopqrstuvwxyz",
   numbers: "0123456789",
@@ -24,7 +24,7 @@ const getRandomBytes = (length: number): Uint8Array => {
 };
 
 // Format secret based on selected format
-export const formatSecret = (
+const formatSecret = (
   bytes: Uint8Array,
   format: SecretFormat,
 ): string => {
